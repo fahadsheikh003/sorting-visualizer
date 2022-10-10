@@ -12,7 +12,7 @@ export default function Chart(props) {
             <h1 className='text-center text-muted my-4'>
                 {props.name}
             </h1>
-            <div className='array' id={`${props.id}`} style={{ width: `${props.width}px`, height: `${props.height}px` }}>
+            <div className='array mb-3' id={`${props.id}`} style={{ width: `${props.width}px`, height: `${props.height}px` }}>
                 {
                     array.map((value, index) => {
                         return <div className={`block ${props.class}`} key={index} style={{ height: `${value * 3}px`, width: `${width}px`, transform: `translate(${index * width + index * space + 1}px)` }}>

@@ -10,6 +10,10 @@ export default async function bubbleSort(array, delay) {
 
         if (!alreadySorted) {
             for (let j = 0; j < blocks.length - i - 1; j++) {
+                const stop = document.getElementById('stop');
+                if (stop && stop.checked) {
+                    return;
+                }
 
                 // To change background-color of the blocks to be compared
                 blocks[j].style.backgroundColor = "#FF4949";

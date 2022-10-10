@@ -1,6 +1,11 @@
 import { sleep, swapElementsHeight } from '../utils';
 
 const heapify = async (array, n, i, delay) => {
+    const stop = document.getElementById('stop');
+    if (stop && stop.checked) {
+        return;
+    }
+
     let blocks = document.querySelectorAll(".heap");
 
     let largest = i; // Initialize largest as root
@@ -36,11 +41,21 @@ const heapSort = async (array, delay) => {
 
     // Build heap (rearrange array)
     for (let i = array.length / 2 - 1; i >= 0; i--) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         await heapify(array, array.length, i, delay);
     }
 
     // One by one extract an element from heap
     for (let i = array.length - 1; i >= 0; i--) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         await swapElementsHeight(blocks[i], blocks[0], delay);
 
         blocks[i].style.backgroundColor = "#13CE66";

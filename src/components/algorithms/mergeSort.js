@@ -15,6 +15,11 @@ const mergeArray = async (array, start, end, delay) => {
     let index = start;
  
     while (start1 <= end1 && start2 <= end2) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         if (array[start1] <= array[start2]) {
             tempArray[index++] = array[start1++];
         }
@@ -31,6 +36,11 @@ const mergeArray = async (array, start, end, delay) => {
     // Copy the remaining elements of
     // array[], if there are any
     while (start1 <= end1) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         blocks[index].style.backgroundColor = color;
         blocks[index].style.height = `${array[start1] * 3}px`;
 
@@ -40,6 +50,11 @@ const mergeArray = async (array, start, end, delay) => {
     }
  
     while (start2 <= end2) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         blocks[index].style.backgroundColor = color;
         blocks[index].style.height = `${array[start2] * 3}px`;
 

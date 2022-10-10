@@ -14,6 +14,11 @@ const bucketSort = async (array, nOfB, delay) => {
 
     // 2) Put array elements in different buckets
     for (let i = 0; i < array.length; i++) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         blocks[i].style.backgroundColor = "#FF4949";
 
         let idx = array[i] / 100 * nOfB;
@@ -38,6 +43,12 @@ const bucketSort = async (array, nOfB, delay) => {
 
             array[index++] = buckets[i][j];
         }
+
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         await sleep(delay);
     }
 }

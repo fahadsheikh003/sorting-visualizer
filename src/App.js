@@ -18,6 +18,7 @@ import countSort from "./components/algorithms/countSort";
 import { generateRandomArray } from './components/utils';
 
 function App() {
+  const [active, setActive] = useState(false);
   const [size, setSize] = useState(20);
   const [array, setArray] = useState(generateRandomArray(size));
   const [delay, setDelay] = useState(4.75);
@@ -27,7 +28,7 @@ function App() {
     // eslint-disable-next-line
   }, [size]);
 
-  const width = 600, height = 350;
+  const width = 600, height = 320;
 
   const handleArrayGeneration = () => {
     setArray(generateRandomArray(size));
@@ -69,6 +70,7 @@ function App() {
       case "/count-sort":
         countSort([...array], calDelay);
         break;
+      case "/":
       case "/comparison":
         if (document.getElementById('bubble-check').checked) {
           bubbleSort([...array], calDelay);
@@ -109,6 +111,64 @@ function App() {
           <div>
             <Router>
               <Header />
+
+              <div className="text-center my-3">
+                <div className="row justify-content-center">
+                  <div className="col-auto">
+                    <table className="table table-responsive">
+                      <thead>
+                        <tr>
+                          <th>
+                            <label htmlFor="customRange3" className="form-label m-2">Animation Speed</label>
+                          </th>
+                          <th className="pb-3">
+                            <input type="range" className="form-range" min="0.25" max="5" step="0.25" id="customRange3" value={delay} onChange={e => { setDelay(e.target.value); }} />
+                          </th>
+                        </tr>
+                        <tr>
+                          <th>
+                            <label className="form-label m-2">Array Size</label>
+                          </th>
+                          <th>
+                            <div>
+                              <select className="form-select form-select-sm mb-1" aria-label=".form-select-sm example" value={size} onChange={async e => { setSize(e.target.value); }}>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                              </select>
+                            </div>
+                          </th>
+                        </tr>
+                      </thead>
+                    </table>
+                  </div>
+                </div>
+                <input type="checkbox" id="stop" className="d-none" />
+                {
+                  active ? <button type="button" className="btn btn-dark m-1" onClick={() => {
+                    const stop = document.getElementById('stop');
+                    if (stop) {
+                      stop.checked = true;
+                    }
+                    setActive(false);
+                  }}>
+                    Stop
+                  </button>
+                    : <button type="button" className="btn btn-dark m-1" onClick={() => {
+                      setActive(true);
+                      const stop = document.getElementById('stop');
+                      if (stop) {
+                        stop.checked = false;
+                      }
+                      sorting();
+                    }}>
+                      Sort
+                    </button>
+                }
+                <button type="button" className="btn btn-dark m-1" onClick={handleArrayGeneration}>Generate</button>
+              </div>
+
               <Routes>
                 <Route exact path={'/bubble-sort'} element={<Chart array={array} size={size} width={width} height={height}
                   name={'Bubble Sort'} class={'bubble'} id={'bubble-sort'} />} />
@@ -129,37 +189,9 @@ function App() {
                 <Route exact path={'/count-sort'} element={<Chart array={array} size={size} width={width} height={height}
                   name={'Count Sort'} class={'count'} id={'count-sort'} />} />
                 <Route exact path={'/comparison'} element={<Comparison array={array} size={size} />} />
+                <Route exact path={'/'} element={<Comparison array={array} size={size} />} />
               </Routes>
             </Router>
-            <table>
-              <thead>
-                <tr>
-                  <th>
-                    <label htmlFor="customRange3" className="form-label m-2">Animation Speed</label>
-                  </th>
-                  <th style={{ paddingTop: '20px' }}>
-                    <input type="range" className="form-range" min="0.25" max="5" step="0.25" id="customRange3" value={delay} onChange={e => { setDelay(e.target.value); }} />
-                  </th>
-                </tr>
-              </thead>
-
-            </table>
-            <div className="text-center my-3">
-              <div>
-                <label htmlFor="customRange3" className="form-label m-2">Animation Speed</label>
-                <input type="range" className="form-range" min="0.25" max="5" step="0.25" id="customRange3" value={delay} onChange={e => { setDelay(e.target.value); }} />
-              </div>
-              <div> Select Array Size &nbsp;
-                <select className="form-select form-select-sm" aria-label=".form-select-sm example" value={size} onChange={async e => { setSize(e.target.value); }}>
-                  <option value="10">10</option>
-                  <option value="20">20</option>
-                  <option value="50">50</option>
-                  <option value="100">100</option>
-                </select>
-              </div>
-              <button type="button" className="btn btn-dark m-1" onClick={() => { sorting(); }}>Sort</button>
-              <button type="button" className="btn btn-dark m-1" onClick={handleArrayGeneration}>Generate</button>
-            </div>
           </div> :
           <div className="text-center"><h2>Please Rotate your device</h2></div>
       }

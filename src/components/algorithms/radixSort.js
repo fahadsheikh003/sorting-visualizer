@@ -18,6 +18,11 @@ const countSort = async (array, exp, delay) => {
 
     // Build the output array
     for (i = array.length - 1; i >= 0; i--) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         const current = count[Math.floor(array[i] / exp) % 10] - 1;
         output[current] = array[i];
 
@@ -49,6 +54,12 @@ const radixSort = async (array, delay) => {
     // exp is 10^i where i is current digit number
     for (let exp = 1; Math.floor(m / exp) > 0; exp *= 10) {
         await countSort(array, exp, delay);
+
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         for (let i = 0; i < array.length; i++) {
             blocks[i].childNodes[0].innerHTML = array[i];
             blocks[i].style.height = `${array[i] * 3}px`;

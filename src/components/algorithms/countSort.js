@@ -2,13 +2,18 @@ import { sleep } from "../utils";
 
 const countSort = async (array, delay) => {
     const tempArray = [...array]
-    tempArray.sort((a,b) => a - b);
+    tempArray.sort((a, b) => a - b);
     let freqArray = new Array(tempArray[tempArray.length - 1] - tempArray[0] + 1).fill(0);
 
     let blocks = document.querySelectorAll(".count");
 
     // To store frequency of every block
     for (let i = 0; i < blocks.length; i++) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         //To highlight the current traversed block
         blocks[i].style.backgroundColor = "#FF4949";
 
@@ -22,9 +27,14 @@ const countSort = async (array, delay) => {
     for (let i = 1; i < freqArray.length; i++) {
         freqArray[i] = freqArray[i] + freqArray[i - 1];
     }
-    
+
     const output = new Array(array.length);
     for (let i = array.length - 1; i >= 0; i--) {
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
+
         const current = freqArray[array[i] - tempArray[0]] - 1;
         output[current] = array[i];
 

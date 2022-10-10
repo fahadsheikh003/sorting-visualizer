@@ -11,6 +11,11 @@ const selectionSort = async (array, delay) => {
         blocks[i].style.backgroundColor = "darkblue";
 
         for (let j = i + 1; j < blocks.length; j++) {
+            const stop = document.getElementById('stop');
+            if (stop && stop.checked) {
+                return;
+            }
+
             // To change background-color of the blocks to be compared
             blocks[j].style.backgroundColor = "#FF4949";
             await sleep(delay);
@@ -32,6 +37,11 @@ const selectionSort = async (array, delay) => {
         const temp = array[i];
         array[i] = array[min_idx];
         array[min_idx] = temp;
+
+        const stop = document.getElementById('stop');
+        if (stop && stop.checked) {
+            return;
+        }
 
         await swapElementsHeight(blocks[i], blocks[min_idx], delay);
 

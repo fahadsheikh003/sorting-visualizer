@@ -16,6 +16,7 @@ import bucketSort from "./components/algorithms/bucketSort";
 import countSort from "./components/algorithms/countSort";
 
 import { generateRandomArray } from './components/utils';
+import Footer from "./components/footer";
 
 function App() {
   const [active, setActive] = useState(false);
@@ -192,6 +193,7 @@ function App() {
                 <Route exact path={'/'} element={<Comparison array={array} size={size} />} />
               </Routes>
             </Router>
+            <Footer />
           </div> :
           <div className="text-center"><h2>Please Rotate your device</h2></div>
       }

@@ -1,0 +1,27 @@
+.array {
+	background-color: white;
+	/* height: 350px; */
+	/* width: 600px; */
+	margin: auto;
+	position: relative;
+	border: 2px solid black;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.block {
+	/* width: 28px; */
+	background-color: #6b5b95;
+	position: absolute;
+	bottom: 0px;
+	transition: 0.2s all ease;
+}
+
+.block_id {
+	display: none;
+	/* position: absolute; */
+	/* color: black; */
+	/* margin-top: -20px; */
+	/* width: 100%; */
+	/* text-align: center; */
+	/* transform: rotate(-90deg); */
+}

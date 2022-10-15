@@ -1,6 +1,6 @@
 import { sleep } from "../utils";
 
-const bucketSort = async (array, nOfB, delay) => {
+const bucketSort = async (array, nOfB, delay, setActive) => {
     let blocks = document.querySelectorAll('.bucket');
     if (nOfB <= 0)
         return;
@@ -16,6 +16,8 @@ const bucketSort = async (array, nOfB, delay) => {
     for (let i = 0; i < array.length; i++) {
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -46,11 +48,17 @@ const bucketSort = async (array, nOfB, delay) => {
 
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
         await sleep(delay);
     }
+
+    setActive(false);
+    // const stop = document.getElementById('stop');
+    // stop.checked = false;
 }
 
 export default bucketSort;

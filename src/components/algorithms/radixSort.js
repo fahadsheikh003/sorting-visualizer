@@ -1,6 +1,6 @@
 import { sleep } from "../utils";
 
-const countSort = async (array, exp, delay) => {
+const countSort = async (array, exp, delay, setActive) => {
     let blocks = document.querySelectorAll('.radix');
     let output = new Array(array.length); // output array
     let i;
@@ -20,6 +20,8 @@ const countSort = async (array, exp, delay) => {
     for (i = array.length - 1; i >= 0; i--) {
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -42,7 +44,7 @@ const countSort = async (array, exp, delay) => {
     }
 }
 
-const radixSort = async (array, delay) => {
+const radixSort = async (array, delay, setActive) => {
     let blocks = document.querySelectorAll('.radix');
     // Find the maximum number to know number of digits
     const tempArray = [...array]
@@ -53,10 +55,12 @@ const radixSort = async (array, delay) => {
     // instead of passing digit number, exp is passed.
     // exp is 10^i where i is current digit number
     for (let exp = 1; Math.floor(m / exp) > 0; exp *= 10) {
-        await countSort(array, exp, delay);
+        await countSort(array, exp, delay, setActive);
 
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -67,6 +71,10 @@ const radixSort = async (array, delay) => {
         }
         await sleep(delay);
     }
+
+    setActive(false);
+    // const stop = document.getElementById('stop');
+    // stop.checked = false;
 }
 
 export default radixSort;

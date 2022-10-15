@@ -1,8 +1,10 @@
 import { sleep, swapElementsHeight } from '../utils';
 
-const heapify = async (array, n, i, delay) => {
+const heapify = async (array, n, i, delay, setActive) => {
     const stop = document.getElementById('stop');
     if (stop && stop.checked) {
+        // setActive(false);
+        // stop.checked = false;
         return;
     }
 
@@ -32,27 +34,31 @@ const heapify = async (array, n, i, delay) => {
         blocks[i].style.backgroundColor = "#6b5b95";
 
         // Recursively Hapify the affected sub-tree
-        await heapify(array, n, largest, delay);
+        await heapify(array, n, largest, delay, setActive);
     }
 }
 
-const heapSort = async (array, delay) => {
+const heapSort = async (array, delay, setActive) => {
     var blocks = document.querySelectorAll(".heap");
 
     // Build heap (rearrange array)
     for (let i = array.length / 2 - 1; i >= 0; i--) {
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
-        await heapify(array, array.length, i, delay);
+        await heapify(array, array.length, i, delay, setActive);
     }
 
     // One by one extract an element from heap
     for (let i = array.length - 1; i >= 0; i--) {
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -61,8 +67,11 @@ const heapSort = async (array, delay) => {
         blocks[i].style.backgroundColor = "#13CE66";
 
         // Call max heapify on the reduced heap
-        await heapify(array, i, 0, delay);
+        await heapify(array, i, 0, delay, setActive);
     }
+    setActive(false);
+    // const stop = document.getElementById('stop');
+    // stop.checked = false;
 }
 
 export default heapSort;

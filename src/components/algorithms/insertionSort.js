@@ -1,11 +1,13 @@
 import { sleep } from "../utils";
 
-const insertionSort = async (array, delay) => {
+const insertionSort = async (array, delay, setActive) => {
     let blocks = document.querySelectorAll('.insertion');
 
     for (let i = 1; i < blocks.length; i++) {
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -21,6 +23,8 @@ const insertionSort = async (array, delay) => {
         while (j >= 0 && Number(blocks[j].childNodes[0].innerHTML) > key) {
             const stop = document.getElementById('stop');
             if (stop && stop.checked) {
+                setActive(false);
+                // stop.checked = false;
                 return;
             }
 
@@ -48,6 +52,10 @@ const insertionSort = async (array, delay) => {
 
         blocks[i].style.backgroundColor = "#13CE66";
     }
+
+    setActive(false);
+    // const stop = document.getElementById('stop');
+    // stop.checked = false;
 }
 
 export default insertionSort;

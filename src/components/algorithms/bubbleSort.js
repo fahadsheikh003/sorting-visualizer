@@ -1,6 +1,6 @@
 import { sleep, swapElementsHeight } from '../utils';
 
-export default async function bubbleSort(array, delay) {
+export default async function bubbleSort(array, delay, setActive) {
     let blocks = document.querySelectorAll('.bubble');
 
     let alreadySorted = false;
@@ -12,6 +12,8 @@ export default async function bubbleSort(array, delay) {
             for (let j = 0; j < blocks.length - i - 1; j++) {
                 const stop = document.getElementById('stop');
                 if (stop && stop.checked) {
+                    setActive(false);
+                    // stop.checked = false;
                     return;
                 }
 
@@ -48,4 +50,8 @@ export default async function bubbleSort(array, delay) {
         blocks[blocks.length - i - 1].style.backgroundColor = "#13CE66";
     }
     alreadySorted = false;
+
+    setActive(false);
+    // const stop = document.getElementById('stop');
+    // stop.checked = false;
 }

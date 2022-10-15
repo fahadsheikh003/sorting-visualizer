@@ -1,6 +1,6 @@
 import { sleep } from "../utils";
 
-const countSort = async (array, delay) => {
+const countSort = async (array, delay, setActive) => {
     const tempArray = [...array]
     tempArray.sort((a, b) => a - b);
     let freqArray = new Array(tempArray[tempArray.length - 1] - tempArray[0] + 1).fill(0);
@@ -11,6 +11,8 @@ const countSort = async (array, delay) => {
     for (let i = 0; i < blocks.length; i++) {
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -32,6 +34,8 @@ const countSort = async (array, delay) => {
     for (let i = array.length - 1; i >= 0; i--) {
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -46,6 +50,10 @@ const countSort = async (array, delay) => {
 
         freqArray[array[i] - tempArray[0]]--;
     }
+
+    setActive(false);
+    // const stop = document.getElementById('stop');
+    // stop.checked = false;
 }
 
 export default countSort;

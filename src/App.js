@@ -45,60 +45,60 @@ function App() {
     const calDelay = 5025 - (delay * 1000);
     switch (document.location.pathname) {
       case "/bubble-sort":
-        bubbleSort([...array], calDelay);
+        bubbleSort([...array], calDelay, setActive);
         break;
       case "/selection-sort":
-        selectionSort([...array], calDelay);
+        selectionSort([...array], calDelay, setActive);
         break;
       case "/insertion-sort":
-        insertionSort([...array], calDelay);
+        insertionSort([...array], calDelay, setActive);
         break;
       case "/merge-sort":
-        mergeSort([...array], 0, array.length - 1, calDelay);
+        mergeSort([...array], 0, array.length - 1, calDelay, setActive);
         break;
       case "/quick-sort":
-        quickSort([...array], 0, array.length - 1, calDelay);
+        quickSort([...array], 0, array.length - 1, calDelay, setActive);
         break;
       case "/heap-sort":
-        heapSort([...array], calDelay);
+        heapSort([...array], calDelay, setActive);
         break;
       case "/radix-sort":
-        radixSort([...array], calDelay);
+        radixSort([...array], calDelay, setActive);
         break;
       case "/bucket-sort":
-        bucketSort([...array], 5, calDelay);
+        bucketSort([...array], 5, calDelay, setActive);
         break;
       case "/count-sort":
-        countSort([...array], calDelay);
+        countSort([...array], calDelay, setActive);
         break;
       case "/":
       case "/comparison":
         if (document.getElementById('bubble-check').checked) {
-          bubbleSort([...array], calDelay);
+          bubbleSort([...array], calDelay, setActive);
         }
         if (document.getElementById('selection-check').checked) {
-          selectionSort([...array], calDelay);
+          selectionSort([...array], calDelay, setActive);
         }
         if (document.getElementById('insertion-check').checked) {
-          insertionSort([...array], calDelay);
+          insertionSort([...array], calDelay, setActive);
         }
         if (document.getElementById('merge-check').checked) {
-          mergeSort([...array], 0, array.length - 1, calDelay);
+          mergeSort([...array], 0, array.length - 1, calDelay, setActive);
         }
         if (document.getElementById('quick-check').checked) {
-          quickSort([...array], 0, array.length - 1, calDelay);
+          quickSort([...array], 0, array.length - 1, calDelay, setActive);
         }
         if (document.getElementById('heap-check').checked) {
-          heapSort([...array], calDelay);
+          heapSort([...array], calDelay, setActive);
         }
         if (document.getElementById('radix-check').checked) {
-          radixSort([...array], calDelay);
+          radixSort([...array], calDelay, setActive);
         }
         if (document.getElementById('bucket-check').checked) {
-          bucketSort([...array], 5, calDelay);
+          bucketSort([...array], 5, calDelay, setActive);
         }
         if (document.getElementById('count-check').checked) {
-          countSort([...array], calDelay);
+          countSort([...array], calDelay, setActive);
         }
         break;
       default:

@@ -1,6 +1,6 @@
 import { sleep, swapElementsHeight } from '../utils';
 
-const selectionSort = async (array, delay) => {
+const selectionSort = async (array, delay, setActive) => {
     let blocks = document.querySelectorAll('.selection');
 
     let min_idx = 0;
@@ -13,6 +13,8 @@ const selectionSort = async (array, delay) => {
         for (let j = i + 1; j < blocks.length; j++) {
             const stop = document.getElementById('stop');
             if (stop && stop.checked) {
+                setActive(false);
+                // stop.checked = false;
                 return;
             }
 
@@ -40,6 +42,8 @@ const selectionSort = async (array, delay) => {
 
         const stop = document.getElementById('stop');
         if (stop && stop.checked) {
+            setActive(false);
+            // stop.checked = false;
             return;
         }
 
@@ -50,6 +54,10 @@ const selectionSort = async (array, delay) => {
         //changing the color of minimum element found in the above traversal
         blocks[i].style.backgroundColor = "#13CE66";
     }
+
+    setActive(false);
+    // const stop = document.getElementById('stop');
+    // stop.checked = false;
 }
 
 export default selectionSort;
